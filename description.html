@@ -168,7 +168,7 @@
     const rawCache = {};
     async function loadRaw(lang) {
       if (rawCache[lang]) return rawCache[lang];
-      const res = await fetch(`../lang/${lang}.json`);
+      const res = await fetch(`./lang/${lang}.json`);
       rawCache[lang] = await res.json();
       return rawCache[lang];
     }
