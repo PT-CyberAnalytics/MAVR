@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MAVR is a scoring system for assessing the criticality of vulnerabilities in the client-side of mobile applications." />
+  <title>MAVR – Mobile Application Vulnerability Ranking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <script src="./scripts/jquery-4.0.0.min.js"></script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="#2E4D7B"/>
+        <path d="M16 6L27 24H5L16 6Z" fill="white"/>
+        <path d="M16 10L24 24H8L16 10Z" fill="#2E4D7B"/>
+      </svg>
+      MAVR
+    </a>
+    <div class="nav-links">
+      <a class="nav-link active" href="index.html"       data-i18n="nav.main">Main</a>
+      <a class="nav-link" href="description.html" data-i18n="nav.description">Description</a>
+      <a class="nav-link" href="examples.html"    data-i18n="nav.examples">Examples</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="en-btn">EN</button>
+      <button class="lang-btn" id="ru-btn">RU</button>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="page-content">
+
+    <!-- Info bar -->
+    <div class="info-bar">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="7.5" stroke="#2E4D7B"/>
+        <rect x="7.25" y="6.75" width="1.5" height="5.5" rx=".75" fill="#2E4D7B"/>
+        <circle cx="8" cy="4.5" r=".875" fill="#2E4D7B"/>
+      </svg>
+      <span id="faq-top-block"></span>
+    </div>
+
+    <!-- LEFT: METRICS -->
+    <div>
+
+      <!-- Required Metrics -->
+      <div class="card metrics-card">
+        <div class="card-header" id="required-title"></div>
+
+        <div class="section-divider">
+          <span class="section-divider-label" id="om-title"></span>
+          <div class="section-divider-line"></div>
+        </div>
+
+        <!-- Attack Source -->
+        <div class="metric-group">
+          <div class="metric-label" id="as-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="as-r" name="as" value="R" checked>
+            <label for="as-r" id="as-r-label"></label>
+            <input type="radio" id="as-a" name="as" value="A">
+            <label for="as-a" id="as-a-label"></label>
+            <input type="radio" id="as-s" name="as" value="S">
+            <label for="as-s" id="as-s-label"></label>
+            <input type="radio" id="as-p" name="as" value="P">
+            <label for="as-p" id="as-p-label"></label>
+          </div>
+        </div>
+
+        <!-- Attack Restrictions -->
+        <div class="metric-group">
+          <div class="metric-label" id="ar-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="ar-n" name="ar" value="N" checked>
+            <label for="ar-n" id="ar-n-label"></label>
+            <input type="radio" id="ar-l" name="ar" value="L">
+            <label for="ar-l" id="ar-l-label"></label>
+            <input type="radio" id="ar-h" name="ar" value="H">
+            <label for="ar-h" id="ar-h-label"></label>
+          </div>
+        </div>
+
+        <!-- User Interaction -->
+        <div class="metric-group">
+          <div class="metric-label" id="ui-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="ui-n" name="ui" value="N" checked>
+            <label for="ui-n" id="ui-n-label"></label>
+            <input type="radio" id="ui-r" name="ui" value="R">
+            <label for="ui-r" id="ui-r-label"></label>
+          </div>
+        </div>
+
+        <div class="section-divider">
+          <span class="section-divider-label" id="im-title"></span>
+          <div class="section-divider-line"></div>
+        </div>
+
+        <!-- Confidentiality -->
+        <div class="metric-group">
+          <div class="metric-label" id="c-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="c-h" name="c" value="H">
+            <label for="c-h" id="c-h-label"></label>
+            <input type="radio" id="c-l" name="c" value="L">
+            <label for="c-l" id="c-l-label"></label>
+            <input type="radio" id="c-i" name="c" value="I">
+            <label for="c-i" id="c-i-label"></label>
+            <input type="radio" id="c-n" name="c" value="N" checked>
+            <label for="c-n" id="c-n-label"></label>
+          </div>
+        </div>
+
+        <!-- Integrity -->
+        <div class="metric-group">
+          <div class="metric-label" id="i-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="i-h" name="i" value="H">
+            <label for="i-h" id="i-h-label"></label>
+            <input type="radio" id="i-l" name="i" value="L">
+            <label for="i-l" id="i-l-label"></label>
+            <input type="radio" id="i-n" name="i" value="N" checked>
+            <label for="i-n" id="i-n-label"></label>
+          </div>
+        </div>
+
+        <!-- Availability -->
+        <div class="metric-group metrics-card-last">
+          <div class="metric-label" id="a-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="a-h" name="a" value="H">
+            <label for="a-h" id="a-h-label"></label>
+            <input type="radio" id="a-l" name="a" value="L">
+            <label for="a-l" id="a-l-label"></label>
+            <input type="radio" id="a-n" name="a" value="N" checked>
+            <label for="a-n" id="a-n-label"></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Metrics -->
+      <div class="card metrics-card additional-card">
+        <div class="card-header" id="additional-title"></div>
+
+        <!-- Up-to-Date -->
+        <div class="metric-group">
+          <div class="metric-label" id="os-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="os-x" name="os" value="X" checked>
+            <label for="os-x" id="os-x-label"></label>
+            <input type="radio" id="os-u" name="os" value="U">
+            <label for="os-u" id="os-u-label"></label>
+            <input type="radio" id="os-s" name="os" value="S">
+            <label for="os-s" id="os-s-label"></label>
+          </div>
+        </div>
+
+        <!-- Critical Feature -->
+        <div class="metric-group metrics-card-last">
+          <div class="metric-label" id="cf-title"></div>
+          <div class="btn-group">
+            <input type="radio" id="cf-x" name="cf" value="X" checked>
+            <label for="cf-x" id="cf-x-label"></label>
+            <input type="radio" id="cf-a" name="cf" value="A">
+            <label for="cf-a" id="cf-a-label"></label>
+            <input type="radio" id="cf-n" name="cf" value="N">
+            <label for="cf-n" id="cf-n-label"></label>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /left col -->
+
+    <!-- RIGHT: RESULT -->
+    <div class="result-card">
+      <div class="card">
+        <div class="card-header" id="result-title"></div>
+        <div class="result-body">
+          <div class="result-field-label" id="final-score-label"></div>
+          <div class="score-display">
+            <span id="final-score" class="final-score-none">0.0</span>
+          </div>
+
+          <div class="result-field-label" id="vector-string-label"></div>
+          <div class="vector-display" id="vector-display-wrap">
+            <div id="vector-container">MAVR:1.0/AS:R/AR:N/UI:N/C:N/I:N/A:N</div>
+            <div class="copy-hint"></div>
+          </div>
+
+          <div class="result-actions">
+            <button class="btn-primary"   id="copy-btn"></button>
+            <button class="btn-secondary" id="reset-button"></button>
+          </div>
+          <div class="result-actions" style="margin-top:8px;">
+            <button class="btn-secondary btn-share" id="share-btn"></button>
+          </div>
+
+          <div class="vector-input-divider"></div>
+          <div class="result-field-label" id="vector-input-label"></div>
+          <div class="vector-input-wrap">
+            <input type="text" id="vector-input" autocomplete="off" spellcheck="false" />
+            <button class="btn-parse" id="parse-btn"></button>
+          </div>
+          <div id="vector-input-error"></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-content -->
+
+  <!-- TOAST -->
+  <div id="copy-toast"></div>
+
+  <script type="module" src="./scripts/script.js"></script>
+</body>
+</html>

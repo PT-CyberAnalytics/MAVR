@@ -1,0 +1,563 @@
+{
+  "meta": {
+    "title": "MAVR – Mobile Application Vulnerability Ranking",
+    "description": "Mobile Application Vulnerability Ranking (MAVR) – a system for assessing the criticality of vulnerabilities in the client-side of mobile applications."
+  },
+  "nav": {
+    "main": "Main",
+    "description": "Description",
+    "examples": "Examples"
+  },
+  "faq_top_block": "Hover over metric names and metric values to see details from the MAVR v1.0 specification.",
+  "required_title": "Required Metrics",
+  "additional_title": "Additional Metrics",
+  "om_title": "Exploitation Metrics",
+  "im_title": "Impact Metrics",
+  "result_title": "Result",
+  "mavr_rating": "MAVR Rating",
+  "vector_string": "Vector String",
+  "copy": "Copy",
+  "reset": "Reset",
+  "copied": "Copied!",
+  "click_to_copy": "Click to copy",
+  "levels": {
+    "none": "None",
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical"
+  },
+  "metrics": {
+    "as": {
+      "title": "Attack Source (AS)",
+      "title_tooltip": "Describes where the attacker carries out the attack from. The further from the target application, the more critical the vulnerability.",
+      "R": {
+        "label": "Remote (R)",
+        "tooltip": "The attack can be performed from anywhere with no proximity restrictions."
+      },
+      "A": {
+        "label": "Adjacent (A)",
+        "tooltip": "The attacker must be in immediate proximity to the device on which the target application is installed."
+      },
+      "S": {
+        "label": "System (S)",
+        "tooltip": "Exploiting the vulnerability requires direct interaction with an OS component."
+      },
+      "P": {
+        "label": "Physical (P)",
+        "tooltip": "Physical access to the device is required to carry out an attack on the application."
+      }
+    },
+    "ar": {
+      "title": "Attack Restrictions (AR)",
+      "title_tooltip": "Describes the necessity of fulfilling special conditions to exploit the vulnerability, which do not include preparation for the attack or attacks on users.",
+      "N": {
+        "label": "None (N)",
+        "tooltip": "No additional conditions are required."
+      },
+      "L": {
+        "label": "Low (L)",
+        "tooltip": "Additional conditions for conducting the attack that are more likely to exist in real life: a specific permission granted to the app (e.g. gallery access), data backup, man-in-the-middle attack (on HTTP protocol)."
+      },
+      "H": {
+        "label": "High (H)",
+        "tooltip": "Low probability of these conditions existing outside a lab environment (e.g. root/jailbreak rights on the device, presence of a session identifier after exiting the client app) or they are difficult to implement (e.g. installing a certificate on a user's Android device)."
+      }
+    },
+    "ui": {
+      "title": "User Interaction (UI)",
+      "title_tooltip": "Shows whether interaction with a legitimate user is required for successful exploitation of the vulnerability.",
+      "N": {
+        "label": "None (N)",
+        "tooltip": "User participation is not required for successful exploitation of the vulnerability."
+      },
+      "R": {
+        "label": "Required (R)",
+        "tooltip": "User participation is required (e.g. clicking a link, opening a document, confirming an action in the system)."
+      }
+    },
+    "c": {
+      "title": "Confidentiality (C)",
+      "title_tooltip": "Describes the impact on confidentiality as a result of exploiting the vulnerability. Confidentiality means providing information only to legitimate, authorised users.",
+      "N": {
+        "label": "None (N)",
+        "tooltip": "No impact on confidentiality."
+      },
+      "I": {
+        "label": "Informative (I)",
+        "tooltip": "Data disclosed as a result of exploiting the vulnerability cannot directly affect the application and/or its clients (e.g. revealing an internal address in the production source code), but may be used later for planning attacks."
+      },
+      "L": {
+        "label": "Low (L)",
+        "tooltip": "Partial impact on the system that does not lead to serious consequences: access to personal data is obtained, but it is incomplete and/or its leakage does not cause significant damage (e.g. login, email address, phone number)."
+      },
+      "H": {
+        "label": "High (H)",
+        "tooltip": "Full access to all data or critically sensitive information."
+      }
+    },
+    "i": {
+      "title": "Integrity (I)",
+      "title_tooltip": "Describes the impact on integrity as a result of exploiting the vulnerability. Integrity means preventing data modification as a result of unauthorised actions.",
+      "N": {
+        "label": "None (N)",
+        "tooltip": "No impact on integrity."
+      },
+      "L": {
+        "label": "Low (L)",
+        "tooltip": "Partial impact on the system that does not lead to serious consequences: changes made to the system do not affect core processes, and the data lost due to such changes is insignificant."
+      },
+      "H": {
+        "label": "High (H)",
+        "tooltip": "Ability to modify critically important data."
+      }
+    },
+    "a": {
+      "title": "Availability (A)",
+      "title_tooltip": "Describes the impact on system availability.",
+      "N": {
+        "label": "None (N)",
+        "tooltip": "No impact on availability."
+      },
+      "L": {
+        "label": "Low (L)",
+        "tooltip": "The application stops responding to user actions and/or server requests. Restoring functionality requires rebooting the mobile device."
+      },
+      "H": {
+        "label": "High (H)",
+        "tooltip": "The application stops responding to user actions and/or server requests. Restoring functionality may require reinstalling the app or may be impossible."
+      }
+    },
+    "os": {
+      "title": "OS Support (OS)",
+      "title_tooltip": "Used to indicate whether the vulnerability is relevant for any OS version or only for outdated (vendor-unsupported) versions.",
+      "X": {
+        "label": "Not Specified (X)",
+        "tooltip": "The metric is undefined for this vulnerability."
+      },
+      "U": {
+        "label": "Unsupported (U)",
+        "tooltip": "The vulnerability is only relevant for OS versions not supported by the manufacturer."
+      },
+      "S": {
+        "label": "Supported (S)",
+        "tooltip": "The vulnerability can be exploited on a device with an OS version supported by the manufacturer."
+      }
+    },
+    "cf": {
+      "title": "Critical Feature (CF)",
+      "title_tooltip": "Shows whether exploitation affects critical business processes.",
+      "X": {
+        "label": "Not Specified (X)",
+        "tooltip": "The metric is undefined for this vulnerability."
+      },
+      "N": {
+        "label": "Not Affected (N)",
+        "tooltip": "Exploiting the vulnerability does not affect the critical business processes of the system."
+      },
+      "A": {
+        "label": "Affected (A)",
+        "tooltip": "Exploiting the vulnerability affects the critical business processes of the system. For example, theft of funds from an account, compromise of private correspondence, use of paid app features without payment."
+      }
+    }
+  },
+  "description_page": {
+    "meta_title": "MAVR – Description",
+    "heading": "MAVR Methodology",
+    "intro_p1": "Mobile Application Vulnerability Ranking (MAVR) is a system for assessing the criticality of vulnerabilities in the client-side of mobile applications.",
+    "intro_p2": "The system includes 2 categories of metrics: required and additional (corrective). As a result of the assessment, a vulnerability is described by a vector string in the format AS:x/AR:x/UI:x/C:x/I:x/A:x/CF:x/OS:x, where x is the metric value.",
+    "intro_p3": "As a result, the vulnerability is assigned a score on a ten-point scale: a score of 0 indicates that the criticality of the described vulnerability cannot be assessed; 0.1–4.9 corresponds to a risk level of Low; 5.0–6.9 corresponds to Medium; 7.0–8.9 corresponds to High; 9.0–10.0 corresponds to Critical.",
+    "required_heading": "Required Metrics",
+    "required_intro": "These metrics are divided into 2 types: exploitation metrics (AS, AR, UI) — describe the conditions that must be met for successful exploitation of the vulnerability (if a vulnerability can be exploited in several ways, the most likely one is chosen); impact metrics (C, I, A) — describe the result of exploiting the vulnerability, with the maximum possible damage assessed.",
+    "additional_heading": "Additional Metrics",
+    "additional_intro": "These metrics are optional for forming the resulting score and can be used to provide a more detailed assessment.",
+    "formula_heading": "Score Formula",
+    "formula_note": "The raw score is clamped to [0.1–10.0], then optional multipliers are applied. The final score is also clamped to [0.1–10.0].",
+    "severity_heading": "Severity Levels",
+    "severity_none": "0.0",
+    "severity_low": "0.1 – 4.9",
+    "severity_medium": "5.0 – 6.9",
+    "severity_high": "7.0 – 8.9",
+    "severity_critical": "9.0 – 10.0",
+    "metrics_heading": "Metric Reference",
+    "col_value": "Metric Value",
+    "col_description": "Description",
+    "metrics": {
+      "as": {
+        "title": "Attack Source (AS)",
+        "intro": "The Attack Source (AS) metric describes where the attacker carries out the attack from. The further (logically and/or physically) from the target application the attacker can be, the more critical the vulnerability is considered.",
+        "notes": [],
+        "values": {
+          "R": {
+            "name": "Remote (R)",
+            "desc": "The attack can be performed from anywhere with no restrictions or proximity to the target application. For example, an attacker can send a link/QR code/SMS. that the user/system will open/read."
+          },
+          "A": {
+            "name": "Adjacent (A)",
+            "desc": "The attacker must be in immediate proximity to the device on which the target application is installed. Attacks can be carried out via Wi-Fi or other wireless technologies such as Bluetooth, NFC. Additionally, attacks requiring remote interaction with the device (e.g. via Siri / Google Assistant) also fall into this group."
+          },
+          "S": {
+            "name": "System (S)",
+            "desc": "Exploiting the vulnerability requires direct interaction with an OS component (specifically, a pre-installed malicious app on the device with the target application)."
+          },
+          "P": {
+            "name": "Physical (P)",
+            "desc": "Physical access to the device is required to carry out an attack on the application."
+          }
+        }
+      },
+      "ar": {
+        "title": "Attack Restrictions (AR)",
+        "intro": "The Attack Restrictions (AR) metric describes the necessity of fulfilling special conditions to exploit the vulnerability, which do not include preparation for the attack or attacks on users.",
+        "notes": [
+          "Actions such as installing a malicious application or a user clicking a link are accounted for by other metrics (AS and UI respectively), so they do not affect the value of this metric (AR:N).",
+          "The presence or absence of a PIN code on the mobile device does not affect the score (AR:N).",
+          "If exploiting the vulnerability requires simultaneous fulfillment of several conditions, the score is set based on the most difficult one to implement.",
+          "If exploiting the vulnerability requires any one of several possible conditions, the score is set based on the easiest one to implement."
+        ],
+        "values": {
+          "N": {
+            "name": "None (N)",
+            "desc": "No additional conditions are required."
+          },
+          "L": {
+            "name": "Low (L)",
+            "desc": "Additional conditions for conducting the attack that are more likely to exist in real life: a specific permission granted to the app (e.g. gallery access), data backup, man-in-the-middle attack (on HTTP protocol)."
+          },
+          "H": {
+            "name": "High (H)",
+            "desc": "Low probability of these conditions existing outside a lab environment (e.g. root/jailbreak rights on the device, presence of a session identifier after exiting the client app) or they are difficult to implement (e.g. installing a certificate on a user's Android device)."
+          }
+        }
+      },
+      "ui": {
+        "title": "User Interaction (UI)",
+        "intro": "The User Interaction (UI) metric shows whether interaction with a legitimate user is required for successful exploitation of the vulnerability.",
+        "notes": [
+          "This metric accounts for user participation directly at the moment of the attack. Actions taken before the attack that create the possibility of exploiting the vulnerability (e.g. granting certain permissions to an app, installing a malicious app) are described by other required metrics."
+        ],
+        "values": {
+          "N": {
+            "name": "None (N)",
+            "desc": "User participation is not required for successful exploitation of the vulnerability."
+          },
+          "R": {
+            "name": "Required (R)",
+            "desc": "User participation is required (e.g. clicking a link, opening a document, confirming an action in the system)."
+          }
+        }
+      },
+      "c": {
+        "title": "Confidentiality (C)",
+        "intro": "The Confidentiality (C) metric describes the impact on confidentiality as a result of exploiting the vulnerability. Confidentiality means providing information only to legitimate, authorised users.",
+        "notes": [],
+        "values": {
+          "N": {
+            "name": "None (N)",
+            "desc": "No impact on the system; no damage."
+          },
+          "I": {
+            "name": "Informative (I)",
+            "desc": "Data disclosed as a result of exploiting the vulnerability cannot directly affect the application and/or its clients (e.g. revealing an internal address in the production source code), but may be used later for planning attacks."
+          },
+          "L": {
+            "name": "Low (L)",
+            "desc": "Partial impact on the system that does not lead to serious consequences: access to personal data is obtained, but it is incomplete and/or its leakage does not cause significant damage (e.g. login, email address, phone number)."
+          },
+          "H": {
+            "name": "High (H)",
+            "desc": "This value is set in one of the following cases: full access to all data in the system is obtained; access to a portion of information whose leakage has a serious impact on the system or its clients is obtained (e.g. unmasked passport data, credentials)."
+          }
+        }
+      },
+      "i": {
+        "title": "Integrity (I)",
+        "intro": "The Integrity (I) metric describes the impact on integrity as a result of exploiting the vulnerability. Integrity means preventing data modification as a result of unauthorised actions.",
+        "notes": [],
+        "values": {
+          "N": {
+            "name": "None (N)",
+            "desc": "No impact on the system; no damage."
+          },
+          "L": {
+            "name": "Low (L)",
+            "desc": "Partial impact on the system that does not lead to serious consequences: changes made to the system do not affect core processes, and the data lost due to such changes is insignificant."
+          },
+          "H": {
+            "name": "High (H)",
+            "desc": "This value is set in one of the following cases: the ability to modify any data in the system is obtained; the ability to modify only certain data is obtained, but such modification leads to serious consequences (e.g. a full credential change causing a legitimate user to lose access to their profile)."
+          }
+        }
+      },
+      "a": {
+        "title": "Availability (A)",
+        "intro": "The Availability (A) metric describes the impact on availability as a result of exploiting the vulnerability. Availability means the ability of a legitimate user to interact with the system at any point in time.",
+        "notes": [],
+        "values": {
+          "N": {
+            "name": "None (N)",
+            "desc": "No impact on availability."
+          },
+          "L": {
+            "name": "Low (L)",
+            "desc": "The application stops responding to user actions and/or server requests. Restoring functionality requires rebooting the mobile device."
+          },
+          "H": {
+            "name": "High (H)",
+            "desc": "The application stops responding to user actions and/or server requests. Restoring functionality may require reinstalling the app or may be impossible."
+          }
+        }
+      },
+      "os": {
+        "title": "OS Support (OS)",
+        "intro": "The OS Support (OS) metric is used to show whether the vulnerability is relevant for any OS version or only for outdated (vendor-unsupported) versions. OS vendors release security patches, and new devices ship with up-to-date OS versions. However, developers continue to support their apps on older OS versions. The greater the difference between the current and vulnerable OS versions, the lower the probability of a successful attack.",
+        "notes": [],
+        "values": {
+          "X": {
+            "name": "Not Specified (X)",
+            "desc": "The metric is undefined for this vulnerability."
+          },
+          "U": {
+            "name": "Unsupported (U)",
+            "desc": "The vulnerability is only relevant for OS versions not supported by the manufacturer."
+          },
+          "S": {
+            "name": "Supported (S)",
+            "desc": "The vulnerability can be exploited on a device with an OS version supported by the manufacturer."
+          }
+        }
+      },
+      "cf": {
+        "title": "Critical Feature (CF)",
+        "intro": "The Critical Feature (CF) metric demonstrates whether exploiting the vulnerability impacts the core processes of the system that are important to its creator (the development company). This metric was added because standard impact metrics sometimes cannot fully demonstrate the seriousness of a vulnerability. A system may have several critical features, determined based on the existing business processes.",
+        "notes": [],
+        "values": {
+          "X": {
+            "name": "Not Specified (X)",
+            "desc": "The metric is undefined for this vulnerability (default, no score modifier)."
+          },
+          "N": {
+            "name": "Not Affected (N)",
+            "desc": "Exploiting the vulnerability does not affect the critical business processes of the system."
+          },
+          "A": {
+            "name": "Affected (A)",
+            "desc": "Exploiting the vulnerability affects the critical business processes of the system. For example, theft of funds from an account, compromise of private correspondence, use of paid app features without payment."
+          }
+        }
+      }
+    },
+    "formula_col_symbol": "Symbol",
+    "formula_col_name": "Name",
+    "formula_col_desc": "Description",
+    "formula_symbols": [
+      {
+        "name": "Attack Source",
+        "desc": "Remote = 10, Adjacent = 6, System = 5, Physical = 0"
+      },
+      {
+        "name": "Attack Restrictions",
+        "desc": "None = 10, Low = 5, High = 0"
+      },
+      {
+        "name": "User Interaction",
+        "desc": "None = 10, Required = 3"
+      },
+      {
+        "name": "Confidentiality",
+        "desc": "High = 10, Low = 3, Informative = 1, None = 0"
+      },
+      {
+        "name": "Integrity",
+        "desc": "High = 10, Low = 3, None = 0"
+      },
+      {
+        "name": "Availability",
+        "desc": "High = 10, Low = 3, None = 0"
+      },
+      {
+        "name": "OS Support multiplier",
+        "desc": "0.80 when OS=U (unsupported OS);"
+      },
+      {
+        "name": "Critical Feature multiplier",
+        "desc": "1.15 when CF=A (affected);"
+      },
+      {
+        "name": "C=Informative multiplier",
+        "desc": "0.79 when C=I;"
+      }
+    ],
+    "formula_special_case": "If fₑ = fᴵ = fₐ = 0 (all three impact metrics are None), the score is forced to 0 regardless of the exploitation metrics, indicating no assessable impact."
+  },
+  "examples_page": {
+    "meta_title": "MAVR – Examples",
+    "heading": "Scoring Examples",
+    "copy_vector": "Copy",
+    "final_score": "Final Score",
+    "vector_string": "Vector String",
+    "examples": [
+      {
+        "title": "Insecure Data Storage",
+        "scenario": "The decompiled file of an application available on Google Play contains information about internal/test server addresses.",
+        "score": "4.9",
+        "level": "low",
+        "vector": "MAVR:1.0/AS:R/AR:N/UI:N/C:I/I:N/A:N",
+        "breakdown": {
+          "AS:R": "Exploitation is possible remotely (downloading the APK to any device).",
+          "AR:N": "No special conditions are required to conduct the attack.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:I": "Disclosure of internal/test addresses causes no direct damage to the application, but this information may be used in future attacks.",
+          "I:N": "No integrity violation occurs.",
+          "A:N": "No availability violation occurs."
+        }
+      },
+      {
+        "title": "PIN Bypass",
+        "scenario": "A banking application limits PIN entry to 5 incorrect attempts, but this counter can be reset by restarting the app. Critical operations (payment, fund transfer, opening banking products) require a second factor.",
+        "score": "5.8",
+        "level": "medium",
+        "vector": "MAVR:1.0/AS:P/AR:N/UI:N/C:H/I:L/A:N",
+        "breakdown": {
+          "AS:P": "Physical access to the target device is required to conduct the attack.",
+          "AR:N": "No special conditions are required to conduct the attack.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:H": "Confidential information is disclosed (account data, personal client data).",
+          "I:N": "Some data modifications are possible (e.g. transfers between own accounts, renaming an account), but critical operations require a second factor.",
+          "A:N": "No availability violation occurs."
+        }
+      },
+      {
+        "title": "Insecure Keychain Flags",
+        "scenario": "The application sets insecure flags for the Keychain key storage, making access to the data more likely.",
+        "score": "4.1",
+        "level": "low",
+        "vector": "MAVR:1.0/AS:S/AR:H/UI:N/C:H/I:N/A:N",
+        "breakdown": {
+          "AS:S": "The attacker's application must be installed on the target device.",
+          "AR:H": "A jailbreak on the device is required to conduct the attack.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:H": "Credentials are stored in plaintext.",
+          "I:N": "No integrity violation occurs.",
+          "A:N": "No availability violation occurs."
+        }
+      },
+      {
+        "title": "Deep-link URL Injection",
+        "scenario": "The application lacks filtering of URL parameters received via the deep-linking mechanism. Successful exploitation requires either a pre-installed malicious app on the device or the legitimate user clicking a link in a browser.",
+        "score": "5.4",
+        "level": "medium",
+        "vector": "MAVR:1.0/AS:S/AR:N/UI:N/C:N/I:L/A:N or MAVR:1.0/AS:R/AR:N/UI:R/C:N/I:L/A:N",
+        "breakdown": {
+          "AS:S / AS:R": "The attacker's app must be installed on the target device / Exploitation is possible remotely.",
+          "AR:N": "No special conditions are required to conduct the attack.",
+          "UI:N / UI:R": "No interaction with the application client is required / The user must click the link.",
+          "C:N": "No confidentiality violation occurs.",
+          "I:L": "Opening arbitrary pages in WebView.",
+          "A:N": "No availability violation occurs."
+        }
+      },
+      {
+        "title": "Unencrypted HTTP Traffic",
+        "scenario": "The application transmits data over the unprotected HTTP protocol. An attacker can intercept and modify transmitted data via a man-in-the-middle attack.",
+        "score": "4.9",
+        "level": "low",
+        "vector": "MAVR:1.0/AS:A/AR:L/UI:N/C:L/I:L/A:N",
+        "breakdown": {
+          "AS:A": "The attacker must be on the same network as the victim.",
+          "AR:L": "The user must be performing actions in the system that expose sensitive information.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:I": "Some data leakage is possible.",
+          "I:L": "Some data modification is possible.",
+          "A:N": "No availability violation occurs."
+        }
+      },
+      {
+        "title": "Improper Certificate Validation",
+        "scenario": "The mobile application does not verify the authenticity of certificates when establishing a secure connection. In the event of a man-in-the-middle attack with server certificate substitution, an attacker can gain access to the user session and read/modify data transmitted between the server and the client application.",
+        "score": "3.7",
+        "level": "low",
+        "vector": "MAVR:1.0/AS:A/AR:H/UI:N/C:L/I:L/A:N",
+        "breakdown": {
+          "AS:A": "The attacker must be on the same network as the victim.",
+          "AR:H": "The user must install a certificate on their device and perform actions in the system that expose sensitive information.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:L": "Some data leakage is possible.",
+          "I:L": "Some data modification is possible.",
+          "A:N": "No availability violation occurs."
+        }
+      },
+      {
+        "title": "DoS via Malformed MMS (CVE-2017-0780)",
+        "scenario": "A buffer overflow vulnerability in the FrameSequenceDrawable component of the Android Messages application (CVE-2017-0780) allows a denial-of-service attack to be triggered via malformed MMS processing.",
+        "score": "6.9",
+        "level": "medium",
+        "vector": "MAVR:1.0/AS:R/AR:N/UI:R/C:N/I:N/A:H/CF:A",
+        "breakdown": {
+          "AS:R": "The attack can be carried out remotely.",
+          "AR:N": "No special conditions are required.",
+          "UI:R": "The user must receive and process the MMS message.",
+          "C:N": "No confidentiality violation occurs.",
+          "I:N": "No integrity violation occurs.",
+          "A:H": "Denial of service — restoring functionality requires a factory reset or reflashing.",
+          "CF:A": "Inability to use the application by the client."
+        }
+      },
+      {
+        "title": "Android Backup Enabled",
+        "scenario": "The application's AndroidManifest.xml sets android:allowBackup to true, allowing a full backup of the application's data. This enables access to application data without root privileges.",
+        "score": "4.2",
+        "level": "low",
+        "vector": "MAVR:1.0/AS:P/AR:L/UI:N/C:H/I:N/A:N",
+        "breakdown": {
+          "AS:P": "USB access to the device is required to conduct the attack.",
+          "AR:L": "Developer mode must be enabled on the device.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:H": "Access to a full copy of the application's data.",
+          "I:N": "No integrity violation occurs.",
+          "A:N": "No availability violation occurs."
+        }
+      },
+      {
+        "title": "Remote Code Execution via WhatsApp VOIP (CVE-2019-3568)",
+        "scenario": "A buffer overflow vulnerability in the WhatsApp VOIP stack (CVE-2019-3568) allows remote code execution via a specially crafted series of SRTCP packets sent to the target phone number.",
+        "score": "10.0",
+        "level": "critical",
+        "vector": "MAVR:1.0/AS:R/AR:N/UI:N/C:H/I:H/A:L/CF:A",
+        "breakdown": {
+          "AS:R": "The attack can be carried out remotely.",
+          "AR:N": "No special conditions are required to conduct the attack.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:H": "Full control over the application (modification of arbitrary data is possible).",
+          "I:H": "No integrity violation occurs.",
+          "A:L": "Application DoS is possible (rated L/H depending on the consequences of the potential DoS).",
+          "CF:A": "Compromise of the application's core function (breach of message confidentiality)."
+        }
+      },
+      {
+        "title": "Insecure File Storage on SD Card",
+        "scenario": "The application saves documents containing important information (service contracts, bank account statements) to the SD card.",
+        "score": "7.9",
+        "level": "high",
+        "vector": "MAVR:1.0/AS:S/AR:N/UI:N/C:H/I:L/A:N/OS:U",
+        "breakdown": {
+          "AS:S": "The attacker's application must be installed on the target device.",
+          "AR:N": "No special conditions are required to conduct the attack.",
+          "UI:N": "No interaction with the application client is required.",
+          "C:H": "Access to documents revealing sensitive information (personal data, financial information).",
+          "I:L": "Deletion of documents from the SD card is possible.",
+          "A:N": "No availability violation occurs.",
+          "OS:U": "Exploitation is possible on Android versions up to Android 10, which is no longer supported by the manufacturer."
+        }
+      }
+    ]
+  },
+  "vector_input_label": "Parse Vector String",
+  "vector_input_placeholder": "e.g. MAVR:1.0/AS:R/AR:N/UI:N/C:H/I:N/A:N",
+  "parse_btn": "Apply",
+  "parse_error_format": "Invalid format. Expected: MAVR:1.0/AS:.../AR:.../UI:.../C:.../I:.../A:...",
+  "parse_error_value": "Unknown value for metric {{metric}}: {{value}}",
+  "parse_success": "Vector applied",
+  "share_btn": "Share link",
+  "share_copied": "Link copied!"
+}

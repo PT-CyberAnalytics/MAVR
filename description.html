@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MAVR methodology description." />
+  <title>MAVR – Description</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles/styles.css" />
+  <script src="./scripts/jquery-4.0.0.min.js"></script>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="#2E4D7B"/>
+        <path d="M16 6L27 24H5L16 6Z" fill="white"/>
+        <path d="M16 10L24 24H8L16 10Z" fill="#2E4D7B"/>
+      </svg>
+      MAVR
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="index.html"              data-i18n="nav.main">Main</a>
+      <a class="nav-link active" href="description.html" data-i18n="nav.description">Description</a>
+      <a class="nav-link" href="examples.html"           data-i18n="nav.examples">Examples</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="en-btn">EN</button>
+      <button class="lang-btn" id="ru-btn">RU</button>
+    </div>
+  </nav>
+
+  <div class="page-content-single" id="page-root">
+
+    <!-- Intro card -->
+    <div class="desc-intro">
+      <h1 id="desc-heading"></h1>
+      <p id="desc-p1"></p>
+      <p id="desc-p2"></p>
+      <!-- <p id="desc-p3"></p> -->
+    </div>
+
+    <!-- Required metrics group label -->
+    <div class="desc-section-heading" id="desc-required-heading"></div>
+    <p class="desc-section-intro" id="desc-required-intro"></p>
+
+    <!-- Required metric blocks -->
+    <div id="required-metric-blocks"></div>
+
+    <!-- Additional metrics group label -->
+    <div class="desc-section-heading" id="desc-additional-heading"></div>
+    <p class="desc-section-intro" id="desc-additional-intro"></p>
+
+    <!-- Additional metric blocks -->
+    <div id="additional-metric-blocks"></div>
+
+    <!-- Formula card -->
+    <div class="card">
+      <div class="card-header" id="desc-formula-heading"></div>
+      <div style="padding: 20px 28px 28px;">
+
+        <!-- Complete formula (MathML) -->
+        <div class="formula-mathml-block">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <mrow>
+              <mtext>Score</mtext>
+              <mo>=</mo>
+              <msub><mtext>round</mtext><mn>1</mn></msub>
+              <mo>(</mo>
+                <msub><mtext>clamp</mtext>
+                  <mrow><mo>[</mo><mn>0.1</mn><mo>,</mo><mn>10</mn><mo>]</mo></mrow>
+                </msub>
+                <mo>(</mo>
+                  <msub><mtext>clamp</mtext>
+                    <mrow><mo>[</mo><mn>0.1</mn><mo>,</mo><mn>10</mn><mo>]</mo></mrow>
+                  </msub>
+                  <mo>(</mo>
+                    <munder>
+                      <mo>&#x2211;</mo>
+                      <mi>x</mi>
+                    </munder>
+                    <msub><mi>w</mi><mi>x</mi></msub>
+                    <mo>&#x22C5;</mo>
+                    <msub><mi>f</mi><mi>x</mi></msub>
+                  <mo>)</mo>
+                  <mo>&#x22C5;</mo>
+                  <msub><mi>m</mi><mrow><mi>O</mi><mi>S</mi></mrow></msub>
+                  <mo>&#x22C5;</mo>
+                  <msub><mi>m</mi><mrow><mi>C</mi><mi>F</mi></mrow></msub>
+                  <mo>&#x22C5;</mo>
+                  <msub><mi>m</mi><mrow><mi>C</mi><mi>I</mi></mrow></msub>
+                <mo>)</mo>
+              <mo>)</mo>
+            </mrow>
+          </math>
+        </div>
+
+        <!-- Expanded weighted sum (MathML) -->
+        <div class="formula-mathml-block" style="margin-top:8px;">
+          <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+            <mrow>
+              <munder><mo>&#x2211;</mo><mi>x</mi></munder>
+              <msub><mi>w</mi><mi>x</mi></msub>
+              <mo>&#x22C5;</mo>
+              <msub><mi>f</mi><mi>x</mi></msub>
+              <mo>=</mo>
+              <mn>0.22</mn><mo>&#x22C5;</mo><msub><mi>f</mi><mrow><mi>A</mi><mi>S</mi></mrow></msub>
+              <mo>+</mo>
+              <mn>0.23</mn><mo>&#x22C5;</mo><msub><mi>f</mi><mrow><mi>A</mi><mi>R</mi></mrow></msub>
+              <mo>+</mo>
+              <mn>0.15</mn><mo>&#x22C5;</mo><msub><mi>f</mi><mrow><mi>U</mi><mi>I</mi></mrow></msub>
+              <mo>+</mo>
+              <mn>0.15</mn><mo>&#x22C5;</mo><msub><mi>f</mi><mi>C</mi></msub>
+              <mo>+</mo>
+              <mn>0.15</mn><mo>&#x22C5;</mo><msub><mi>f</mi><mi>I</mi></msub>
+              <mo>+</mo>
+              <mn>0.10</mn><mo>&#x22C5;</mo><msub><mi>f</mi><mi>A</mi></msub>
+            </mrow>
+          </math>
+        </div>
+
+        <!-- Symbol reference table (populated by JS) -->
+        <div style="height:1px;background:var(--border);margin:24px 0;"></div>
+        <table class="formula-symbol-table">
+          <thead>
+            <tr>
+              <th id="formula-col-symbol"></th>
+              <th id="formula-col-name"></th>
+              <th id="formula-col-desc"></th>
+            </tr>
+          </thead>
+          <tbody id="formula-symbol-rows"></tbody>
+        </table>
+
+        <!-- Special case note -->
+        <div class="formula-special-note" id="formula-special-case"></div>
+
+        <!-- Formula note -->
+        <!-- <p id="desc-formula-note" style="margin-top:14px;font-size:14px;line-height:1.65;color:var(--text-muted);"></p> -->
+      </div>
+    </div>
+
+     <!-- Severity levels card -->
+    <div class="card">
+      <div class="card-header" id="desc-severity-heading"></div>
+      <div id="severity-rows"></div>
+    </div>
+
+  </div>
+
+  <div id="copy-toast"></div>
+
+  <script type="module">
+    import { t, currentLang, setLanguage, i18nReady, SUPPORTED_LANGS } from './scripts/i18n.js';
+
+    const REQUIRED_METRICS   = ['as','ar','ui','c','i','a'];
+    const ADDITIONAL_METRICS = ['os','cf'];
+
+    const SEVERITY_COLORS = {
+      none: 'var(--none)', low: 'var(--low)', medium: 'var(--medium)',
+      high: 'var(--high)', critical: 'var(--critical)'
+    };
+
+    // Load raw JSON to get the notes arrays (i18next returnObjects is fragile)
+    const rawCache = {};
+    async function loadRaw(lang) {
+      if (rawCache[lang]) return rawCache[lang];
+      const res = await fetch(`../lang/${lang}.json`);
+      rawCache[lang] = await res.json();
+      return rawCache[lang];
+    }
+
+    function buildMetricBlock(mk, metricData) {
+      // if (!metricData) return '';
+      const values  = metricData.values;
+      const notes   = metricData.notes || [];
+
+      const notesHtml = notes.length
+        ? `<div class="metric-notes">
+            ${notes.map(n => `<div class="metric-note">
+              <span class="metric-note-icon">ℹ</span>
+              <span>${n}</span>
+            </div>`).join('')}
+           </div>`
+        : '';
+
+      const rows = Object.entries(values).map(([vk, vobj]) => `
+        <tr>
+          <td>
+            <span class="metric-value-badge">${mk.toUpperCase()}:${vk}</span>
+            <span class="metric-value-name">${vobj.name}</span>
+          </td>
+          <td>${vobj.desc}</td>
+        </tr>`).join('');
+
+      return `
+        <div class="metric-desc-block">
+          <div class="metric-desc-header">
+            <h2>${metricData.title}</h2>
+            <p>${metricData.intro}</p>
+          </div>
+          ${notesHtml}
+          <table class="metric-values-table">
+            <thead>
+              <tr>
+                <th>${t('description_page.col_value')}</th>
+                <th>${t('description_page.col_description')}</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>`;
+    }
+
+    async function renderUI() {
+      document.title = t('description_page.meta_title');
+      $('meta[name="description"]').attr('content', t('meta.description'));
+      document.documentElement.lang = currentLang();
+
+      $('[data-i18n="nav.main"]').text(t('nav.main'));
+      $('[data-i18n="nav.description"]').text(t('nav.description'));
+      $('[data-i18n="nav.examples"]').text(t('nav.examples'));
+
+      // Intro
+      $('#desc-heading').text(t('description_page.heading'));
+      $('#desc-p1').text(t('description_page.intro_p1'));
+      $('#desc-p2').text(t('description_page.intro_p2'));
+      $('#desc-p3').text(t('description_page.intro_p3'));
+
+      // Formula
+      $('#desc-formula-heading').text(t('description_page.formula_heading'));
+      $('#desc-formula-note').text(t('description_page.formula_note'));
+
+      // Formula symbol table headers
+      $('#formula-col-symbol').text(t('description_page.formula_col_symbol'));
+      $('#formula-col-name').text(t('description_page.formula_col_name'));
+      $('#formula-col-desc').text(t('description_page.formula_col_desc'));
+
+      // Symbol rows — read from raw JSON (array, safe from i18next path parsing)
+      const rawDesc = await loadRaw(currentLang());
+      const symbols = rawDesc.description_page.formula_symbols;
+      const symbolKeys = [
+        '<math><msub><mi>f</mi><mrow><mi>A</mi><mi>S</mi></mrow></msub></math>',
+        '<math><msub><mi>f</mi><mrow><mi>A</mi><mi>R</mi></mrow></msub></math>',
+        '<math><msub><mi>f</mi><mrow><mi>U</mi><mi>I</mi></mrow></msub></math>',
+        '<math><msub><mi>f</mi><mi>C</mi></msub></math>',
+        '<math><msub><mi>f</mi><mi>I</mi></msub></math>',
+        '<math><msub><mi>f</mi><mi>A</mi></msub></math>',
+        '<math><msub><mi>m</mi><mrow><mi>O</mi><mi>S</mi></mrow></msub></math>',
+        '<math><msub><mi>m</mi><mrow><mi>C</mi><mi>F</mi></mrow></msub></math>',
+        '<math><msub><mi>m</mi><mrow><mi>C</mi><mi>I</mi></mrow></msub></math>',
+        '<math><msub><mtext>clamp</mtext><mrow><mo>[</mo><mi>a</mi><mo>,</mo><mi>b</mi><mo>]</mo></mrow></msub></math>',
+        '<math><msub><mtext>round</mtext><mn>1</mn></msub></math>',
+      ];
+      $('#formula-symbol-rows').html(
+        symbols.map((row, i) => `
+          <tr>
+            <td>${symbolKeys[i]}</td>
+            <td>${row.name}</td>
+            <td>${row.desc}</td>
+          </tr>`).join('')
+      );
+
+      // Special case note
+      $('#formula-special-case').text(t('description_page.formula_special_case'));
+
+      // Severity
+      $('#desc-severity-heading').text(t('description_page.severity_heading'));
+      const sevKeys = ['none','low','medium','high','critical'];
+      $('#severity-rows').html(sevKeys.map((k, i) => `
+        <div style="display:flex;align-items:center;gap:14px;padding:12px 24px;${i < sevKeys.length-1 ? 'border-bottom:1px solid var(--border);' : ''}">
+          <span style="width:86px;font-size:13px;font-weight:700;color:${SEVERITY_COLORS[k]};white-space:nowrap;">${t(`levels.${k}`)}</span>
+          <span style="font-size:14px;color:var(--text-primary);">${t(`description_page.severity_${k}`)}</span>
+        </div>`).join(''));
+
+      // Section headings
+      $('#desc-required-heading').text(t('description_page.required_heading'));
+      $('#desc-required-intro').text(t('description_page.required_intro'));
+      $('#desc-additional-heading').text(t('description_page.additional_heading'));
+      $('#desc-additional-intro').text(t('description_page.additional_intro'));
+
+      // Load raw for notes
+      const raw = await loadRaw(currentLang());
+      const metrics = raw.description_page.metrics;
+
+      $('#required-metric-blocks').html(
+        REQUIRED_METRICS.map(mk => buildMetricBlock(mk, metrics[mk])).join('')
+      );
+      $('#additional-metric-blocks').html(
+        ADDITIONAL_METRICS.map(mk => buildMetricBlock(mk, metrics[mk])).join('')
+      );
+
+      SUPPORTED_LANGS.forEach(l => $(`#${l}-btn`).toggleClass('active', l === currentLang()));
+    }
+
+    async function switchLang(lang) {
+      const $root = $('#page-root');
+      await $root.animate({ opacity: 0 }, 150).promise();
+      await setLanguage(lang);
+      await renderUI();
+      $root.animate({ opacity: 1 }, 200);
+    }
+
+    $(async function () {
+      await i18nReady;
+      SUPPORTED_LANGS.forEach(l => $(`#${l}-btn`).on('click', () => switchLang(l)));
+      document.addEventListener('languageChanged', () => renderUI());
+      await renderUI();
+    });
+  </script>
+</body>
+</html>
