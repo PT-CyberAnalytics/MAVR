@@ -1,5 +1,7 @@
 # MAVR Calculator
 
+Online version https://pt-cyberanalytics.github.io/MAVR/
+
 **EN** | [RU](#ru)
 
 ---
