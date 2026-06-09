@@ -537,12 +537,12 @@
       {
         "title": "Insecure File Storage on SD Card",
         "scenario": "The application saves documents containing important information (service contracts, bank account statements) to the SD card.",
-        "score": "7.9",
-        "level": "high",
-        "vector": "MAVR:1.0/AS:S/AR:N/UI:N/C:H/I:L/A:N/OS:U",
+        "score": "4.6",
+        "level": "low",
+        "vector": "MAVR:1.0/AS:S/AR:L/UI:N/C:H/I:L/A:N/OS:U",
         "breakdown": {
           "AS:S": "The attacker's application must be installed on the target device.",
-          "AR:N": "No special conditions are required to conduct the attack.",
+          "AR:L": "App needs a permission",
           "UI:N": "No interaction with the application client is required.",
           "C:H": "Access to documents revealing sensitive information (personal data, financial information).",
           "I:L": "Deletion of documents from the SD card is possible.",
