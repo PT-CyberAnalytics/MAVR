@@ -37,6 +37,7 @@ function renderUI() {
   $('[data-i18n="nav.main"]').text(t("nav.main"));
   $('[data-i18n="nav.description"]').text(t("nav.description"));
   $('[data-i18n="nav.examples"]').text(t("nav.examples"));
+  $('[data-i18n="footer.source_code"]').text(t("footer.source_code"));
 
   // Section headings & info bar
   $("#faq-top-block").text(t("faq_top_block"));
@@ -210,21 +211,24 @@ function parseVector(rawStr, silent = false) {
   if (!raw) return false;
 
   const parts = raw.split("/");
+  const hasPrefix = /^MAVR:\d(\.\d+)?$/i.test(parts[0]);
 
-  if (!parts[0].match(/^MAVR:\d(\.\d+)?$/i)) {
+  // A MAVR prefix is optional, but if supplied it must be well-formed.
+  if (/^MAVR:/i.test(parts[0]) && !hasPrefix) {
     if (!silent) setInputError(t("parse_error_format"));
     return false;
   }
 
   const map = {};
-  for (let i = 1; i < parts.length; i++) {
-    const sep = parts[i].indexOf(":");
+  const metricParts = hasPrefix ? parts.slice(1) : parts;
+  for (const part of metricParts) {
+    const sep = part.indexOf(":");
     if (sep < 1) {
       if (!silent) setInputError(t("parse_error_format"));
       return false;
     }
-    const key = parts[i].slice(0, sep).toLowerCase();
-    const val = parts[i].slice(sep + 1).toUpperCase();
+    const key = part.slice(0, sep).toLowerCase();
+    const val = part.slice(sep + 1).toUpperCase();
     map[key] = val;
   }
 

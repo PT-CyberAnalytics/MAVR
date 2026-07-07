@@ -8,6 +8,9 @@
     "description": "Описание",
     "examples": "Примеры"
   },
+  "footer": {
+    "source_code": "Исходный код на GitHub"
+  },
   "faq_top_block": "Наведите курсор на названия метрик и их значения, чтобы увидеть детали из спецификации MAVR v1.0.",
   "required_title": "Основные метрики",
   "additional_title": "Дополнительные метрики",
@@ -555,7 +558,7 @@
   "vector_input_label": "Вставить вектор",
   "vector_input_placeholder": "напр. MAVR:1.0/AS:R/AR:N/UI:N/C:H/I:N/A:N",
   "parse_btn": "Применить",
-  "parse_error_format": "Неверный формат. Ожидается: MAVR:1.0/AS:.../AR:.../UI:.../C:.../I:.../A:...",
+  "parse_error_format": "Неверный формат. Ожидается: [MAVR:1.0/]AS:.../AR:.../UI:.../C:.../I:.../A:...",
   "parse_error_value": "Неизвестное значение метрики {{metric}}: {{value}}",
   "parse_success": "Вектор применён",
   "share_btn": "Поделиться",

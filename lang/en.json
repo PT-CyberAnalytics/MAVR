@@ -8,6 +8,9 @@
     "description": "Description",
     "examples": "Examples"
   },
+  "footer": {
+    "source_code": "Source code on GitHub"
+  },
   "faq_top_block": "Hover over metric names and metric values to see details from the MAVR v1.0 specification.",
   "required_title": "Required Metrics",
   "additional_title": "Additional Metrics",
@@ -555,7 +558,7 @@
   "vector_input_label": "Parse Vector String",
   "vector_input_placeholder": "e.g. MAVR:1.0/AS:R/AR:N/UI:N/C:H/I:N/A:N",
   "parse_btn": "Apply",
-  "parse_error_format": "Invalid format. Expected: MAVR:1.0/AS:.../AR:.../UI:.../C:.../I:.../A:...",
+  "parse_error_format": "Invalid format. Expected: [MAVR:1.0/]AS:.../AR:.../UI:.../C:.../I:.../A:...",
   "parse_error_value": "Unknown value for metric {{metric}}: {{value}}",
   "parse_success": "Vector applied",
   "share_btn": "Share link",
